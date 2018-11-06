@@ -10,7 +10,7 @@ RUN apt-get update && \
 
 RUN apt-get update && apt-get install -y dirmngr apt-transport-https && \
     apt-key advanced --keyserver pgp.mit.edu --recv-keys 90E9F83F22250DD7 && \
-    echo "deb https://releases.wikimedia.org/debian jessie-mediawiki main" | tee /etc/apt/sources.list.d/parsoid.list && \
+    echo "deb https://releases.wikimedia.org/debian jessie-mediawiki main" > /etc/apt/sources.list.d/parsoid.list && \
     apt-get update && apt-get install -y parsoid
 
 RUN sed -i /uri:/s/localhost\\\/w/mediawiki/g /etc/mediawiki/parsoid/config.yaml && \
