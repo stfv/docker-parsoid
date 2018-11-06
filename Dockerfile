@@ -1,19 +1,11 @@
 FROM debian:jessie-slim
 MAINTAINER Christof Spies <christof.spies@stfv-koeln.de>
 
-RUN apt-get update && \
-    apt-get install -y \
-    curl \
-    make \
-    git && \
-    curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
-    apt-get install -y nodejs && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN cd ~ && \
-    git clone https://gerrit.wikimedia.org/r/p/mediawiki/services/parsoid && \
-    cd parsoid && \
-    npm install
+RUN apt-get update && apt-get install -y dirmngr && \
+    apt-key advanced --keyserver pgp.mit.edu --recv-keys 90E9F83F22250DD7 && \
+    echo "deb https://releases.wikimedia.org/debian jessie-mediawiki main" | tee /etc/apt/sources.list.d/parsoid.list && \
+    apt-get update && apt-get install -y apt-transport-https && \
+    apt-get update && apt-get install -y parsoid
 
 
 ## You may also need development tools to build native addons:
