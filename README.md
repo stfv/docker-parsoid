@@ -11,6 +11,8 @@ Das lokale Dockerfile basiert auf folgenden Dockerfile von Drittanbietern:
 
 Auf dem Debian Image wird Parsoid in der Version 0.9.0 für Mediawiki installiert.
 
+* Installiert nodejs 11.x
+
 ## Automatische Builds auf Docker Hub
 
 Automatische Builds auf Docker Hub wurden nach [Anleitung](https://docs.docker.com/docker-hub/builds/) aktiviert.
