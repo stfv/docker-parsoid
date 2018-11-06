@@ -13,11 +13,7 @@ RUN apt-get update && apt-get install -y dirmngr apt-transport-https && \
     echo "deb https://releases.wikimedia.org/debian jessie-mediawiki main" | tee /etc/apt/sources.list.d/parsoid.list && \
     apt-get update && apt-get install -y parsoid
 
+RUN sed -i /uri:/s/localhost\\\/w/mediawiki/g /etc/mediawiki/parsoid/config.yaml && \
+    sed -i /domain:/s/localhost/mediawiki/g /etc/mediawiki/parsoid/config.yaml
 
-## You may also need development tools to build native addons:
-##     sudo apt-get install gcc g++ make
-## To install the Yarn package manager, run:
-##     curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-##     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-##     sudo apt-get update && sudo apt-get install yarn
-    
+RUN service parsoid restart
