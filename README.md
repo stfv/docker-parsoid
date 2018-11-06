@@ -1,6 +1,6 @@
 # Docker Parsoid
 
-Dokumentation der Anpassungen am Docker Image von Debian Stretch Slim für den Betrieb mit Parsoid.
+Dokumentation der Anpassungen am Docker Image von Debian Jessie Slim für den Betrieb mit Parsoid.
 
 ## Verwendete Dockerfiles
 
