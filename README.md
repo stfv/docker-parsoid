@@ -5,7 +5,7 @@ Dokumentation der Anpassungen am Docker Image von Debian Stretch Slim für den B
 ## Verwendete Dockerfiles
 
 Das lokale Dockerfile basiert auf folgenden Dockerfile von Drittanbietern:
-* [debian:stretch-slim](https://github.com/debuerreotype/debuerreotype/blob/master/Dockerfile)
+* [debian:jessie-slim](https://github.com/debuerreotype/debuerreotype/blob/master/Dockerfile)
 
 ## Anpassungen
 
