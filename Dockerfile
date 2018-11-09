@@ -5,14 +5,20 @@ RUN apt-get update && \
     apt-get install -y \
     curl \
     make \
-    --no-install-recommends && \
-    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-    apt-get install -y nodejs --no-install-recommends
+    dirmngr \
+    apt-transport-https \
+    ca-certificates
 
-RUN apt-get update && apt-get install -y dirmngr apt-transport-https --no-install-recommends && \
-    apt-key advanced --keyserver pgp.mit.edu --recv-keys 90E9F83F22250DD7 && \
+RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - &&\
+    echo 'deb https://deb.nodesource.com/node_8.x jessie main' > /etc/apt/sources.list.d/nodesource.list &&\
+    echo 'deb-src https://deb.nodesource.com/node_8.x jessie main' >> /etc/apt/sources.list.d/nodesource.list &&\
+    apt-get update && \
+    apt-get install -y nodejs
+
+RUN apt-key advanced --keyserver pgp.mit.edu --recv-keys 90E9F83F22250DD7 && \
     echo "deb https://releases.wikimedia.org/debian jessie-mediawiki main" > /etc/apt/sources.list.d/parsoid.list && \
-    apt-get update && apt-get install -y parsoid --no-install-recommends
+    apt-get update && \
+    apt-get install -y parsoid
 
 RUN sed -i /uri:/s/localhost\\\/w/mediawiki/g /etc/mediawiki/parsoid/config.yaml && \
     sed -i /domain:/s/localhost/mediawiki/g /etc/mediawiki/parsoid/config.yaml
